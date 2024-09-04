@@ -30,6 +30,7 @@ import { MathSelector } from '@/components/editor/selectors/math-selector'
 import { ColorSelector } from '@/components/editor/selectors/color-selector'
 
 import { Separator } from '@/components/ui/separator'
+import { TextAlignmentButtons } from './selectors/text-align'
 
 const hljs = require('highlight.js')
 
@@ -68,16 +69,19 @@ export default function Editor({ initialValue, onChange }: EditorProps) {
   }
 
   return (
-    <div className='relative w-full max-w-screen-lg'>
+    <div
+      className="relative w-full h-full focus:outline-none focus:ring-1 rounded-md focus:ring-primary "
+      tabIndex={0}
+    >
       <EditorRoot>
         <EditorContent
           immediatelyRender={false}
           initialContent={initialValue}
           extensions={extensions}
-          className='min-h-96 rounded-xl border p-4'
+          className="min-h-96 rounded-xl border p-4"
           editorProps={{
             handleDOMEvents: {
-              keydown: (_view, event) => handleCommandNavigation(event)
+              keydown: (_view, event) => handleCommandNavigation(event),
             },
             handlePaste: (view, event) =>
               handleImagePaste(view, event, uploadFn),
@@ -85,32 +89,32 @@ export default function Editor({ initialValue, onChange }: EditorProps) {
               handleImageDrop(view, event, moved, uploadFn),
             attributes: {
               class:
-                'prose dark:prose-invert prose-headings:font-title font-default focus:outline-none max-w-full'
-            }
+                "prose dark:prose-invert prose-headings:font-title font-default focus:outline-none max-w-full",
+            },
           }}
           onUpdate={({ editor }) => {
-            onChange(editor.getHTML())
+            onChange(editor.getHTML());
           }}
           slotAfter={<ImageResizer />}
         >
-          <EditorCommand className='z-50 h-auto max-h-[330px] overflow-y-auto rounded-md border border-muted bg-background px-1 py-2 shadow-md transition-all'>
-            <EditorCommandEmpty className='px-2 text-muted-foreground'>
+          <EditorCommand className="z-50 h-auto max-h-[330px] overflow-y-auto rounded-md border border-muted bg-background px-1 py-2 shadow-md transition-all">
+            <EditorCommandEmpty className="px-2 text-muted-foreground">
               No results
             </EditorCommandEmpty>
             <EditorCommandList>
-              {suggestionItems.map(item => (
+              {suggestionItems.map((item) => (
                 <EditorCommandItem
                   value={item.title}
-                  onCommand={val => item.command?.(val)}
-                  className='flex w-full items-center space-x-2 rounded-md px-2 py-1 text-left text-sm hover:bg-accent aria-selected:bg-accent'
+                  onCommand={(val) => item.command?.(val)}
+                  className="flex w-full items-center space-x-2 rounded-md px-2 py-1 text-left text-sm hover:bg-accent aria-selected:bg-accent"
                   key={item.title}
                 >
-                  <div className='flex h-10 w-10 items-center justify-center rounded-md border border-muted bg-background'>
+                  <div className="flex h-10 w-10 items-center justify-center rounded-md border border-muted bg-background">
                     {item.icon}
                   </div>
                   <div>
-                    <p className='font-medium'>{item.title}</p>
-                    <p className='text-xs text-muted-foreground'>
+                    <p className="font-medium">{item.title}</p>
+                    <p className="text-xs text-muted-foreground">
                       {item.description}
                     </p>
                   </div>
@@ -120,23 +124,26 @@ export default function Editor({ initialValue, onChange }: EditorProps) {
           </EditorCommand>
 
           <EditorMenu open={openAI} onOpenChange={setOpenAI}>
-            <Separator orientation='vertical' />
+            <Separator orientation="vertical" />
             <NodeSelector open={openNode} onOpenChange={setOpenNode} />
 
-            <Separator orientation='vertical' />
+            <Separator orientation="vertical" />
             <LinkSelector open={openLink} onOpenChange={setOpenLink} />
 
-            <Separator orientation='vertical' />
+            <Separator orientation="vertical" />
             <MathSelector />
 
-            <Separator orientation='vertical' />
+            <Separator orientation="vertical" />
+            <TextAlignmentButtons />
+
+            <Separator orientation="vertical" />
             <TextButtons />
 
-            <Separator orientation='vertical' />
+            <Separator orientation="vertical" />
             <ColorSelector open={openColor} onOpenChange={setOpenColor} />
           </EditorMenu>
         </EditorContent>
       </EditorRoot>
     </div>
-  )
+  );
 }
