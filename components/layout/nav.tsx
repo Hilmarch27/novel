@@ -44,9 +44,10 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import Link from 'next/link';
 
 export const description =
-  "An AI playground with a sidebar navigation and a main content area. The playground has a header with a settings drawer and a share button. The sidebar has navigation links and a user menu. The main content area shows a form to configure the model and messages.";
+  "An AI Blog's with a sidebar navigation and a main content area. The Blog's has a header with a settings drawer and a share button. The sidebar has navigation links and a user menu. The main content area shows a form to configure the model and messages.";
 
 
 const Nav = ({ children } : { children: React.ReactNode }) => {
@@ -63,17 +64,19 @@ const Nav = ({ children } : { children: React.ReactNode }) => {
             <TooltipProvider delayDuration={0}>
               <Tooltip>
                 <TooltipTrigger asChild>
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    className="rounded-lg bg-muted"
-                    aria-label="Playground"
-                  >
-                    <SquareTerminal className="size-5" />
-                  </Button>
+                  <Link href="/blog">
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      className="rounded-lg bg-muted"
+                      aria-label="Create articel's"
+                    >
+                      <SquareTerminal className="size-5" />
+                    </Button>
+                  </Link>
                 </TooltipTrigger>
                 <TooltipContent side="right" sideOffset={5}>
-                  Playground
+                  Create articel&apos;s
                 </TooltipContent>
               </Tooltip>
             </TooltipProvider>
@@ -81,17 +84,19 @@ const Nav = ({ children } : { children: React.ReactNode }) => {
             <TooltipProvider delayDuration={0}>
               <Tooltip>
                 <TooltipTrigger asChild>
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    className="rounded-lg"
-                    aria-label="Models"
-                  >
-                    <Bot className="size-5" />
-                  </Button>
+                  <Link href="/blog/list">
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      className="rounded-lg"
+                      aria-label="List"
+                    >
+                      <Bot className="size-5" />
+                    </Button>
+                  </Link>
                 </TooltipTrigger>
                 <TooltipContent side="right" sideOffset={5}>
-                  Models
+                  List
                 </TooltipContent>
               </Tooltip>
             </TooltipProvider>
@@ -190,7 +195,7 @@ const Nav = ({ children } : { children: React.ReactNode }) => {
         </aside>
         <div className="flex flex-col">
           <header className="sticky top-0 z-10 flex h-[53px] items-center gap-1 border-b bg-background px-4">
-            <h1 className="text-xl font-semibold">Playground</h1>
+            <h1 className="text-xl font-semibold">Blog&apos;s</h1>
             <Drawer>
               <DrawerTrigger asChild>
                 <Button variant="ghost" size="icon" className="md:hidden">

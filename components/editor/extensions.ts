@@ -22,6 +22,8 @@ import {
   Mathematics
 } from 'novel/extensions'
 import { UploadImagesPlugin } from 'novel/plugins'
+import TextAlign from "@tiptap/extension-text-align";
+
 
 import { cx } from 'class-variance-authority'
 import { common, createLowlight } from 'lowlight'
@@ -149,6 +151,10 @@ const mathematics = Mathematics.configure({
   }
 })
 
+const textAlign = TextAlign.configure({
+  types: ["heading", "paragraph"], // Tentukan jenis node yang ingin Anda dukung alignment-nya
+});
+
 const characterCount = CharacterCount.configure()
 
 export const defaultExtensions = [
@@ -172,5 +178,6 @@ export const defaultExtensions = [
   TextStyle,
   Color,
   CustomKeymap,
-  GlobalDragHandle
+  GlobalDragHandle,
+  textAlign // Tambahkan extension text align di sini
 ]

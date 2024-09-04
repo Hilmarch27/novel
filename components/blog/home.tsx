@@ -1,32 +1,9 @@
 import {
   Bird,
-  Book,
-  Bot,
-  Code2,
-  CornerDownLeft,
-  LifeBuoy,
-  Mic,
-  Paperclip,
   Rabbit,
-  Settings,
-  Settings2,
-  Share,
-  SquareTerminal,
-  SquareUser,
-  Triangle,
   Turtle,
 } from "lucide-react";
 
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import {
-  Drawer,
-  DrawerContent,
-  DrawerDescription,
-  DrawerHeader,
-  DrawerTitle,
-  DrawerTrigger,
-} from "@/components/ui/drawer";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import {
@@ -37,12 +14,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
+import ContentForm from "./content-form";
 
 export const description =
   "An AI playground with a sidebar navigation and a main content area. The playground has a header with a settings drawer and a share button. The sidebar has navigation links and a user menu. The main content area shows a form to configure the model and messages.";
@@ -51,10 +23,16 @@ export function Dashboard() {
   return (
     <>
       <main className="grid h-full flex-1 gap-4 overflow-auto p-4 md:grid-cols-2 lg:grid-cols-3">
-        <div
-          className="relative h-ful hidden flex-col items-start gap-8 md:flex"
-          x-chunk="dashboard-03-chunk-0"
-        >
+        <div className="relative flex h-full min-h-[50vh] flex-col rounded-xl  bg-muted/50 p-4 lg:col-span-2">
+          <div className="relative overflow-hidden rounded-lg bg-muted/50 focus-within:ring-1 focus-within:ring-ring h-full">
+            <ContentForm />
+          </div>
+          {/* <Button type="submit" size="sm" className="ml-auto gap-1.5">
+            Send Message
+            <CornerDownLeft className="size-3.5" />
+          </Button> */}
+        </div>
+        <div className="relative h-ful hidden flex-col items-start gap-8 md:flex">
           <form className="grid w-full items-start gap-6">
             <fieldset className="grid gap-6 rounded-lg border p-4">
               <legend className="-ml-1 px-1 text-sm font-medium">
@@ -162,51 +140,6 @@ export function Dashboard() {
                 />
               </div>
             </fieldset>
-          </form>
-        </div>
-        <div className="relative flex h-full min-h-[50vh] flex-col rounded-xl bg-muted/50 p-4 lg:col-span-2">
-          <Badge variant="outline" className="absolute right-3 top-3">
-            Output
-          </Badge>
-          <div className="flex-1" />
-          <form
-            className="relative overflow-hidden rounded-lg border bg-background focus-within:ring-1 focus-within:ring-ring"
-            x-chunk="dashboard-03-chunk-1"
-          >
-            <Label htmlFor="message" className="sr-only">
-              Message
-            </Label>
-            <Textarea
-              id="message"
-              placeholder="Type your message here..."
-              className="min-h-12 resize-none border-0 p-3 shadow-none focus-visible:ring-0"
-            />
-            <div className="flex items-center p-3 pt-0">
-              <TooltipProvider delayDuration={0}>
-                <Tooltip>
-                  <TooltipTrigger asChild>
-                    <Button variant="ghost" size="icon">
-                      <Paperclip className="size-4" />
-                      <span className="sr-only">Attach file</span>
-                    </Button>
-                  </TooltipTrigger>
-                  <TooltipContent side="top">Attach File</TooltipContent>
-                </Tooltip>
-                <Tooltip>
-                  <TooltipTrigger asChild>
-                    <Button variant="ghost" size="icon">
-                      <Mic className="size-4" />
-                      <span className="sr-only">Use Microphone</span>
-                    </Button>
-                  </TooltipTrigger>
-                  <TooltipContent side="top">Use Microphone</TooltipContent>
-                </Tooltip>
-              </TooltipProvider>
-              <Button type="submit" size="sm" className="ml-auto gap-1.5">
-                Send Message
-                <CornerDownLeft className="size-3.5" />
-              </Button>
-            </div>
           </form>
         </div>
       </main>
