@@ -27,6 +27,7 @@ export default function ContentForm() {
   const [title, setTitle] = useState("");
   const [slug, setSlug] = useState("");
   const [content, setContent] = useState<string>("");
+  const [category, setCategory] = useState<string>("");
   const [pending, setPending] = useState(false);
 
   useEffect(() => {
@@ -43,7 +44,7 @@ export default function ContentForm() {
 
     setPending(true);
 
-    const result = await createBlogAction({ title, slug, content });
+    const result = await createBlogAction({ title, slug, content, category });
 
     if (result?.error) {
       toast.error(result.error);
@@ -67,10 +68,16 @@ export default function ContentForm() {
           value={slug}
           onChange={(e) => setSlug(e.target.value)}
         />
+        <Input
+          type="text"
+          placeholder="Category"
+          value={category}
+          onChange={(e) => setCategory(e.target.value)}
+        />
       </div>
 
       <Editor initialValue={defaultValue} onChange={setContent} />
-      <Button className='mb-10' onClick={handleSubmit} disabled={pending}>
+      <Button className="mb-10" onClick={handleSubmit} disabled={pending}>
         {pending ? "Submitting..." : "Create"}
       </Button>
     </div>

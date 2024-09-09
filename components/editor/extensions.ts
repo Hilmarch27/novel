@@ -83,44 +83,44 @@ const horizontalRule = HorizontalRule.configure({
 const starterKit = StarterKit.configure({
   bulletList: {
     HTMLAttributes: {
-      class: cx('list-disc list-outside leading-3 -mt-2')
-    }
+      class: cx("list-disc list-outside leading-3 -mt-2 mb-4"),
+    },
   },
   orderedList: {
     HTMLAttributes: {
-      class: cx('list-decimal list-outside leading-3 -mt-2')
-    }
+      class: cx("list-decimal list-outside leading-3 -mt-2 mb-4"),
+    },
   },
   listItem: {
     HTMLAttributes: {
-      class: cx('leading-normal -mb-2')
-    }
+      class: cx("leading-normal "),
+    },
   },
   blockquote: {
     HTMLAttributes: {
-      class: cx('border-l-4 border-primary')
-    }
+      class: cx("border-l-4 border-primary"),
+    },
   },
   codeBlock: {
     HTMLAttributes: {
       class: cx(
-        'rounded-md bg-muted text-muted-foreground border p-5 font-mono font-medium'
-      )
-    }
+        "rounded-md bg-muted text-muted-foreground border p-5 font-mono font-medium"
+      ),
+    },
   },
   code: {
     HTMLAttributes: {
-      class: cx('rounded-md bg-muted  px-1.5 py-1 font-mono font-medium'),
-      spellcheck: 'false'
-    }
+      class: cx("rounded-md bg-muted  px-1.5 py-1 font-mono font-medium"),
+      spellcheck: "false",
+    },
   },
   horizontalRule: false,
   dropcursor: {
-    color: '#DBEAFE',
-    width: 4
+    color: "#DBEAFE",
+    width: 4,
   },
-  gapcursor: false
-})
+  gapcursor: false,
+});
 
 const codeBlockLowlight = CodeBlockLowlight.configure({
   // configure lowlight: common /  all / use highlightJS in case there is a need to specify certain language grammars only
@@ -152,7 +152,7 @@ const mathematics = Mathematics.configure({
 })
 
 const textAlign = TextAlign.configure({
-  types: ["heading", "paragraph"], // Tentukan jenis node yang ingin Anda dukung alignment-nya
+  types: ["heading", "paragraph", "image"], // Tentukan jenis node yang ingin Anda dukung alignment-nya
 });
 
 const characterCount = CharacterCount.configure()

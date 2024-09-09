@@ -1,11 +1,7 @@
-import { BellIcon, CheckIcon } from "@radix-ui/react-icons";
-
 import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
-  CardDescription,
   CardFooter,
   CardHeader,
   CardTitle,
@@ -58,9 +54,6 @@ export function CardDemo({ className, ...props }: CardProps) {
         </CardContent>
         <CardFooter className="flex justify-center">
             <small>Ganesha Operation {new Date().getFullYear()}</small>
-          {/* <Button className="w-full">
-            <CheckIcon className="mr-2 h-4 w-4" /> Mark all as read
-          </Button> */}
         </CardFooter>
       </Card>
   );

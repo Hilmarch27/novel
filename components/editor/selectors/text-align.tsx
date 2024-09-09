@@ -1,7 +1,7 @@
 // text-alignment-buttons.tsx
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { AlignCenter, AlignLeft, AlignRight } from "lucide-react";
+import { AlignCenter, AlignJustifyIcon, AlignLeft, AlignRight } from "lucide-react";
 import { useEditor } from "novel";
 
 export const TextAlignmentButtons = () => {
