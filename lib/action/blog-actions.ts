@@ -8,6 +8,7 @@ export async function createBlogAction(data: {
   slug: string;
   content: string;
   category: string;
+  thumbnail: string | null;
 }) {
   // TODO: validate the data
 
@@ -20,6 +21,7 @@ export async function createBlogAction(data: {
         slug: data.slug,
         content: data.content,
         category: data.category,
+        thumbnail: data.thumbnail
       },
     });
 

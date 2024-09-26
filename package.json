@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "cypress:open": "cypress open"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",
@@ -28,12 +29,14 @@
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "cmdk": "1.0.0",
+    "date-fns": "^4.1.0",
     "lowlight": "^3.1.0",
     "lucide-react": "^0.438.0",
     "next": "14.2.7",
     "next-themes": "^0.3.0",
     "novel": "^0.5.0",
     "react": "^18",
+    "react-day-picker": "8.10.1",
     "react-dom": "^18",
     "react-hook-form": "^7.53.0",
     "react-resizable-panels": "^2.1.2",
@@ -41,12 +44,16 @@
     "tailwind-merge": "^2.5.2",
     "tailwindcss-animate": "^1.0.7",
     "vaul": "^0.9.1",
-    "zod": "^3.23.8"
+    "xlsx": "^0.18.5",
+    "zod": "^3.23.8",
+    "zustand": "5.0.0-rc.2"
   },
   "devDependencies": {
+    "@faker-js/faker": "^9.0.2",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "cypress": "^13.14.2",
     "eslint": "^8",
     "eslint-config-next": "14.2.7",
     "postcss": "^8",

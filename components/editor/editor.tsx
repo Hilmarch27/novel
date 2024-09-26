@@ -1,6 +1,6 @@
-'use client'
+"use client";
 
-import { useState } from 'react'
+import {useState } from "react";
 
 import {
   EditorCommand,
@@ -10,63 +10,64 @@ import {
   EditorContent,
   type EditorInstance,
   EditorRoot,
-  type JSONContent
-} from 'novel'
+  type JSONContent,
+} from "novel";
 
-import { ImageResizer, handleCommandNavigation } from 'novel/extensions'
-import { handleImageDrop, handleImagePaste } from 'novel/plugins'
+import { ImageResizer, handleCommandNavigation } from "novel/extensions";
+import { handleImageDrop, handleImagePaste } from "novel/plugins";
 
 import {
   slashCommand,
-  suggestionItems
-} from '@/components/editor/slash-command'
-import EditorMenu from '@/components/editor/editor-menu'
-import { uploadFn } from '@/components/editor/image-upload'
-import { defaultExtensions } from '@/components/editor/extensions'
-import { TextButtons } from '@/components/editor/selectors/text-buttons'
-import { LinkSelector } from '@/components/editor/selectors/link-selector'
-import { NodeSelector } from '@/components/editor/selectors/node-selector'
-import { MathSelector } from '@/components/editor/selectors/math-selector'
-import { ColorSelector } from '@/components/editor/selectors/color-selector'
+  suggestionItems,
+} from "@/components/editor/slash-command";
+import EditorMenu from "@/components/editor/editor-menu";
+import { uploadFn } from "@/components/editor/image-upload";
+import { defaultExtensions } from "@/components/editor/extensions";
+import { TextButtons } from "@/components/editor/selectors/text-buttons";
+import { LinkSelector } from "@/components/editor/selectors/link-selector";
+import { NodeSelector } from "@/components/editor/selectors/node-selector";
+import { MathSelector } from "@/components/editor/selectors/math-selector";
+import { ColorSelector } from "@/components/editor/selectors/color-selector";
 
-import { Separator } from '@/components/ui/separator'
-import { TextAlignmentButtons } from './selectors/text-align'
+import { Separator } from "@/components/ui/separator";
+import { TextAlignmentButtons } from "./selectors/text-align";
 
-const hljs = require('highlight.js')
+import hljs from "highlight.js";
 
-const extensions = [...defaultExtensions, slashCommand]
+const extensions = [...defaultExtensions, slashCommand];
 
 export const defaultEditorContent = {
-  type: 'doc',
+  type: "doc",
   content: [
     {
-      type: 'paragraph',
-      content: []
-    }
-  ]
-}
+      type: "paragraph",
+      content: [],
+    },
+  ],
+};
 
 interface EditorProps {
-  initialValue?: JSONContent
-  onChange: (content: string) => void
+  initialValue?: JSONContent;
+  onChange: (content: string) => void;
 }
 
 export default function Editor({ initialValue, onChange }: EditorProps) {
-  const [openNode, setOpenNode] = useState(false)
-  const [openColor, setOpenColor] = useState(false)
-  const [openLink, setOpenLink] = useState(false)
-  const [openAI, setOpenAI] = useState(false)
+  const [openNode, setOpenNode] = useState(false);
+  const [openColor, setOpenColor] = useState(false);
+  const [openLink, setOpenLink] = useState(false);
+  const [openAI, setOpenAI] = useState(false);
 
   //Apply Codeblock Highlighting on the HTML from editor.getHTML()
   const highlightCodeblocks = (content: string) => {
-    const doc = new DOMParser().parseFromString(content, 'text/html')
-    doc.querySelectorAll('pre code').forEach(el => {
+    const doc = new DOMParser().parseFromString(content, "text/html");
+    doc.querySelectorAll("pre code").forEach((el) => {
       // @ts-ignore
       // https://highlightjs.readthedocs.io/en/latest/api.html?highlight=highlightElement#highlightelement
-      hljs.highlightElement(el)
-    })
-    return new XMLSerializer().serializeToString(doc)
-  }
+      hljs.highlightElement(el);
+    });
+    return new XMLSerializer().serializeToString(doc);
+  };
+
 
   return (
     <div
@@ -78,7 +79,7 @@ export default function Editor({ initialValue, onChange }: EditorProps) {
           immediatelyRender={false}
           initialContent={initialValue}
           extensions={extensions}
-          className="min-h-96 rounded-xl border p-4"
+          className="h-full rounded-xl border p-4"
           editorProps={{
             handleDOMEvents: {
               keydown: (_view, event) => handleCommandNavigation(event),

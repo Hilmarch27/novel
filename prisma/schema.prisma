@@ -14,21 +14,22 @@ datasource db {
 }
 
 model User {
-  id        String   @id @default(cuid()) // Primary key
-  name      String
-  email     String   @unique
-  password  String
-  posts     Post[]   // One-to-many relationship with Post
+  id       String @id @default(uuid())
+  name     String
+  email    String @unique
+  password String
+  posts    Post[] // One-to-many relationship with Post
 }
 
 model Post {
-  id        String   @id @default(cuid()) // Primary key
-  title     String
-  slug      String   @unique
-  content   String
-  authorId  String?   // Foreign key to User
-  author    User?     @relation(fields: [authorId], references: [id]) // Define relation to User
-  category  String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id          String   @id @default(uuid())
+  title       String
+  slug        String   @unique
+  content     String
+  thumbnail   String?
+  category    String
+  authorEmail String? // Foreign key to User
+  author      User?    @relation(fields: [authorEmail], references: [email]) // Define relation to User
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 }

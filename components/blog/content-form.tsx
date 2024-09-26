@@ -7,6 +7,7 @@ import { toast } from 'sonner'
 import Editor from '@/components/editor/editor'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
+import useGlobalStore from '@/zustand/global-store'
 
 export const defaultValue = {
   type: 'doc',
@@ -26,9 +27,12 @@ interface ContentFormProps {
 export default function ContentForm() {
   const [title, setTitle] = useState("");
   const [slug, setSlug] = useState("");
+  console.log("slug:", slug);
   const [content, setContent] = useState<string>("");
   const [category, setCategory] = useState<string>("");
   const [pending, setPending] = useState(false);
+  const data = useGlobalStore((state) => state.data);
+
 
   useEffect(() => {
     const name = title
@@ -37,6 +41,7 @@ export default function ContentForm() {
       .replace(/(^-|-$)+/g, "");
 
     setSlug(name);
+    console.log("Slug updated:", name); // Log slug untuk debugging
   }, [title]);
 
   async function handleSubmit() {
@@ -44,8 +49,8 @@ export default function ContentForm() {
 
     setPending(true);
 
-    const result = await createBlogAction({ title, slug, content, category });
-
+    const result = await createBlogAction({ title, slug, content, category, thumbnail: data });
+    console.log("result:", result);
     if (result?.error) {
       toast.error(result.error);
     }
@@ -66,6 +71,7 @@ export default function ContentForm() {
           type="text"
           placeholder="Slug"
           value={slug}
+          readOnly
           onChange={(e) => setSlug(e.target.value)}
         />
         <Input
